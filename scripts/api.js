@@ -12,19 +12,30 @@ const api = (function(name){
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/albert-chasen';
 
   const getItems = function (callback){
+    return $.getJSON(`${BASE_URL}/items`, callback);
+  };
+  const createItem = function(name, callback){
+    const newItem = JSON.stringify({
+      name,
+    });
+    $.ajax({
+      'url': `${BASE_URL}/items`,
+      'method': 'POST',
+      'contentType': 'application/json',
+      'data': newItem,
+      'success': callback
+    });
 
-    $.getJSON(${BASE_URL}/items, callback);
-   //callback('api module works!');
-};
-const createItems;
+  };
 
   return{
-    getItems , BASE_URL
+    getItems, 
+    createItem
   };
 
 
-return {
-createitems
-updateitems
-}
+// return {
+// createitems
+// updateitems
+// }
 }());
