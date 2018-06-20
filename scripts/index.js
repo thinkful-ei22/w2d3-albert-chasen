@@ -11,20 +11,39 @@ $(document).ready(function() {
   });
 });
 
-// store.items.push();
 
-// $.getJSON('https://thinkful-list-api.herokuapp.com/ei-student/items', (response) => {
-//     console.log('api response: ' , response);
+// api.getItems(function(data) {
+//   console.log(data);
 // });
 
-api.getItems(function(data) {
-  console.log(data);
-});
+//console.log(api.BASE_URL);
 
-console.log(api.BASE_URL);
+// api.createItem('pears', (newItem) => {
+//   api.getItems((items) => {
+//     console.log(items);
+//   });
 
-api.createItem('pears', (newItem) => {
-  api.getItems((items) => {
-    console.log(items);
+
+
+api.getItems((items) => {
+  console.log(items);
+
+  items.forEach( function(item){
+    store.addItem(item) ;
   });
+  // const item = items[0];
+
+  const item = store.items[0];
+  console.log(store);
+  console.log('current name: ' + item.name);
+  store.findAndUpdate(item.id, { name: 'foobar' });
+  console.log('new name: ' + item.name);
+
+
+
+  api.updateItem(item.id, { name: 'foobar' }, () => {
+    console.log('updated!');
+  });
+
+
 });
